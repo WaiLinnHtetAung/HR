@@ -15,10 +15,10 @@
         <div class="card-body">
             <table class="table table-bordered table-striped" id="DataTable">
                 <tr>
-                    <th width="25%">{{ __('messages.employee.fields.profile') }}</th>
+                    <th width="25%">{{ __('messages.employee.fields.profile') }} Image</th>
                     <td>
-                        @if ($user->profile)
-                            <img src="{{ $user->profile }}" style="width: 250px;" alt="">
+                        @if ($user->photo)
+                            <img src="{{ $user->profile_img_path() }}" style="width: 250px;" alt="">
                         @else
                             <img src="{{ asset('logo.png') }}" style="width: 250px;" alt="">
                         @endif

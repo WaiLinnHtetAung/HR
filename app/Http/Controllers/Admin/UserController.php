@@ -30,15 +30,34 @@ class UserController extends Controller
 
     public function dataTable()
     {
-        $data = User::with('department');
+        $data = User::with('department', 'position', 'roles');
 
         return Datatables::of($data)
+            ->filterColumn('dep_id', function ($query, $keyword) {
+                $query->whereHas('department', function ($q) use ($keyword) {
+                    $q->where('name', 'like', "%$keyword%");
+                });
+            })
+            ->filterColumn('position_id', function ($query, $keyword) {
+                $query->whereHas('position', function ($q) use ($keyword) {
+                    $q->where('name', 'like', "%$keyword%");
+                });
+            })
+            ->filterColumn('role', function ($query, $keyword) {
+                $query->whereHas('roles', function ($q) use ($keyword) {
+                    $q->where('name', 'like', "%$keyword%");
+                });
+            })
             ->addColumn('plus-icon', function ($each) {
                 return null;
             })
             ->editColumn('profile', function ($each) {
                 $default_photo = url('logo.png');
-                return $each->profile ? "<img src='$each->profile' style='width: 130px; height: 100px; object-fit:contain;' />" : "<img src='$default_photo' style='width: 130px; height: 100px; object-fit:contain;' />";
+                $user_photo = $each->profile_img_path();
+                return $each->photo ? "<img src='$user_photo' style='width: 80px; height: 80px; border-radius: 10px;' />" : "<img src='$default_photo' style='width: 130px; height: 100px; object-fit:contain;' />";
+            })
+            ->editColumn('position_id', function ($each) {
+                return $each->position ? $each->position->name : '-';
             })
             ->editColumn('dep_id', function ($each) {
                 return $each->department ? $each->department->name : '-';
@@ -72,7 +91,7 @@ class UserController extends Controller
                     $del_icon = '<a href="" class="text-danger delete-btn" data-id="' . $each->id . '"><i class="bx bxs-trash-alt fs-4" ></i></a>';
                 }
 
-                return '<div class="action-icon">' . $show_icon . $edit_icon . $del_icon . '</div>';
+                return '<div class="action-icon text-nowrap">' . $show_icon . $edit_icon . $del_icon . '</div>';
             })
             ->rawColumns(['profile', 'is_present', 'role', 'action'])
             ->make(true);

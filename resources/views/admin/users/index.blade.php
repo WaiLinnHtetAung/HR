@@ -19,15 +19,16 @@
         <div class="card-body">
             <table class="table table-bordered table-striped w-100" id="DataTable">
                 <thead>
-                    <th class="no-sort "></th>
-                    <th>{{ __('messages.employee.fields.profile') }}</th>
+                    <th class="no-sort"></th>
+                    <th class="no-sort">{{ __('messages.employee.fields.profile') }}</th>
                     <th>{{ __('messages.employee.fields.employee_id') }}</th>
                     <th>{{ __('messages.employee.fields.name') }}</th>
+                    <th>{{ __('messages.employee.fields.position') }}</th>
                     <th>{{ __('messages.employee.fields.email') }}</th>
                     <th>{{ __('messages.employee.fields.phone') }}</th>
                     <th>{{ __('messages.employee.fields.department') }}</th>
                     <th>{{ __('messages.employee.fields.role') }}</th>
-                    <th>{{ __('messages.employee.fields.is_present') }}</th>
+                    <th class="no-sort">{{ __('messages.employee.fields.is_present') }}</th>
                     <th class="no-sort text-nowrap">Action</th>
                 </thead>
                 <tbody>
@@ -62,6 +63,10 @@
                     {
                         data: 'name',
                         name: 'name'
+                    },
+                    {
+                        data: 'position_id',
+                        name: 'position_id',
                     },
                     {
                         data: 'email',
