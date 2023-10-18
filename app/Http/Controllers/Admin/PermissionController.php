@@ -29,6 +29,9 @@ class PermissionController extends Controller
         $data = Permission::query();
 
         return Datatables::of($data)
+            ->editColumn('plus-icon', function ($each) {
+                return null;
+            })
             ->addIndexColumn()
             ->addColumn('action', function ($each) {
                 $show_icon = '';

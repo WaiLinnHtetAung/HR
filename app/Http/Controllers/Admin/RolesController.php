@@ -32,6 +32,9 @@ class RolesController extends Controller
         $data = Role::query();
 
         return Datatables::of($data)
+            ->addColumn('plus-icon', function ($each) {
+                return null;
+            })
             ->addIndexColumn()
             ->addColumn('permissions', function ($each) {
                 $permissions = $each->permissions->pluck('name');

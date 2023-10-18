@@ -77,6 +77,50 @@ class PermissionsSeeder extends Seeder
                 'id' => 16,
                 'title' => 'user_access',
             ],
+            [
+                'id' => 17,
+                'title' => 'office_management',
+            ],
+            [
+                'id' => 18,
+                'title' => 'department_create',
+            ],
+            [
+                'id' => 19,
+                'title' => 'department_edit',
+            ],
+            [
+                'id' => 20,
+                'title' => 'department_show',
+            ],
+            [
+                'id' => 21,
+                'title' => 'department_delete',
+            ],
+            [
+                'id' => 22,
+                'title' => 'department_access',
+            ],
+            [
+                'id' => 23,
+                'title' => 'position_create',
+            ],
+            [
+                'id' => 24,
+                'title' => 'position_edit',
+            ],
+            [
+                'id' => 25,
+                'title' => 'position_show',
+            ],
+            [
+                'id' => 26,
+                'title' => 'position_delete',
+            ],
+            [
+                'id' => 27,
+                'title' => 'position_access',
+            ],
         ];
 
         Permission::insert($permissions);

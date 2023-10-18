@@ -17,8 +17,9 @@
             @endcan
         </div>
         <div class="card-body">
-            <table class="table table-bordered" id="DataTable">
+            <table class="table table-bordered table-striped w-100" id="DataTable">
                 <thead>
+                    <th class="no-sort"></th>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Permissions</th>
@@ -39,8 +40,12 @@
             const table = new DataTable('#DataTable', {
                 processing: true,
                 serverSide: true,
+                responsive: true,
                 ajax: '/admin/roles-datatable',
                 columns: [{
+                        data: 'plus-icon',
+                        name: 'plus-icon'
+                    }, {
                         data: 'id',
                         name: 'id'
                     },
@@ -58,10 +63,15 @@
                     }
                 ],
                 columnDefs: [{
-                    targets: 'no-sort',
-                    sortable: false,
-                    searchable: false
-                }]
+                        targets: 'no-sort',
+                        sortable: false,
+                        searchable: false
+                    },
+                    {
+                        targets: [0],
+                        class: 'control'
+                    }
+                ]
             })
 
             //delete function

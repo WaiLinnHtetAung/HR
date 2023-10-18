@@ -1,28 +1,33 @@
 @extends('layouts.app')
-@section('title', 'Users')
+@section('title', 'Employee')
 
 @section('content')
     <div class="card-head-icon">
         <i class='bx bxs-user' style="color: rgb(8, 184, 8);"></i>
-        <div>Users</div>
+        <div>{{ __('messages.employee.title') }}</div>
     </div>
 
     <div class="card mt-3">
         <div class="d-flex justify-content-between m-3">
-            <span>Users List</span>
+            <span>{{ __('messages.employee.title') }} List</span>
             @can('user_create')
                 <a href="{{ route('admin.users.create') }}" class="btn btn-primary text-decoration-none text-white"><i
                         class='bx bxs-plus-circle me-2'></i>
-                    Create New User</a>
+                    Create New {{ __('messages.employee.title') }}</a>
             @endcan
         </div>
         <div class="card-body">
-            <table class="table table-bordered" id="DataTable">
+            <table class="table table-bordered table-striped w-100" id="DataTable">
                 <thead>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Roles</th>
+                    <th class="no-sort "></th>
+                    <th>{{ __('messages.employee.fields.profile') }}</th>
+                    <th>{{ __('messages.employee.fields.employee_id') }}</th>
+                    <th>{{ __('messages.employee.fields.name') }}</th>
+                    <th>{{ __('messages.employee.fields.email') }}</th>
+                    <th>{{ __('messages.employee.fields.phone') }}</th>
+                    <th>{{ __('messages.employee.fields.department') }}</th>
+                    <th>{{ __('messages.employee.fields.role') }}</th>
+                    <th>{{ __('messages.employee.fields.is_present') }}</th>
                     <th class="no-sort text-nowrap">Action</th>
                 </thead>
                 <tbody>
@@ -40,10 +45,19 @@
             const table = new DataTable('#DataTable', {
                 processing: true,
                 serverSide: true,
+                responsive: true,
                 ajax: '/admin/users-datatable',
                 columns: [{
-                        data: 'id',
-                        name: 'id'
+                        data: 'plus-icon',
+                        name: 'plus-icon',
+                    },
+                    {
+                        data: 'profile',
+                        name: 'profile'
+                    },
+                    {
+                        data: 'employee_id',
+                        name: 'employee_id'
                     },
                     {
                         data: 'name',
@@ -54,19 +68,37 @@
                         name: 'email'
                     },
                     {
+                        data: 'phone',
+                        name: 'phone'
+                    },
+                    {
+                        data: 'dep_id',
+                        name: 'dep_id'
+                    },
+                    {
                         data: 'role',
                         name: 'role'
                     },
                     {
+                        data: 'is_present',
+                        name: 'is_present'
+                    },
+                    {
                         data: 'action',
-                        data: 'action',
+                        name: 'action',
                     }
                 ],
                 columnDefs: [{
-                    targets: 'no-sort',
-                    sortable: false,
-                    searchable: false
-                }]
+                        targets: 'no-sort',
+                        sortable: false,
+                        searchable: false,
+
+                    },
+                    {
+                        "targets": [0],
+                        "class": "control"
+                    }
+                ],
             })
 
             //delete function
@@ -92,6 +124,7 @@
                     }
                 })
             })
+
         })
     </script>
 @endsection

@@ -29,10 +29,14 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        {{-- <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" /> --}}
-                        <img class="rounded-circle"
-                            src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&name={{ auth()->user()->name }}"
-                            alt="">
+                        @if (auth()->user()->photo)
+                            <img class="rounded-circle" style="object-fit: cover;"
+                                src="{{ asset('storage/profiles/' . auth()->user()->photo) }}" alt="">
+                        @else
+                            <img class="rounded-circle"
+                                src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&name={{ auth()->user()->name }}"
+                                alt="">
+                        @endif
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -41,9 +45,15 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img class="rounded-circle"
-                                            src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&name={{ auth()->user()->name }}"
-                                            alt="">
+                                        @if (auth()->user()->photo)
+                                            <img class="rounded-circle" style="object-fit: cover;"
+                                                src="{{ asset('storage/profiles/' . auth()->user()->photo) }}"
+                                                alt="">
+                                        @else
+                                            <img class="rounded-circle"
+                                                src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&name={{ auth()->user()->name }}"
+                                                alt="">
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
@@ -57,7 +67,7 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ route('admin.profile', [auth()->user()->id]) }}">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">My Profile</span>
                         </a>

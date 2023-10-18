@@ -1,19 +1,19 @@
 @extends('layouts.app')
-@section('title', 'Permissions')
+@section('title', 'Positions')
 
 @section('content')
     <div class="card-head-icon">
-        <i class='bx bxs-check-shield' style="color: green"></i>
-        <div>Permissions</div>
+        <i class='bx bxs-briefcase' style="color: goldenrod;"></i>
+        <div>{{ __('messages.position.title') }}</div>
     </div>
 
     <div class="card mt-3">
         <div class="d-flex justify-content-between m-3">
-            <span>Permissions List</span>
-            @can('permission_create')
-                <a href="{{ route('admin.permissions.create') }}" class="btn btn-primary text-decoration-none text-white"><i
+            <span>{{ __('messages.position.title') }} List</span>
+            @can('position_create')
+                <a href="{{ route('admin.positions.create') }}" class="btn btn-primary text-decoration-none text-white"><i
                         class='bx bxs-plus-circle me-2'></i>
-                    Create New Permission</a>
+                    Create New {{ __('messages.position.title') }}</a>
             @endcan
         </div>
         <div class="card-body">
@@ -40,7 +40,7 @@
                 processing: true,
                 responsive: true,
                 serverSide: true,
-                ajax: '/admin/permission-datatable',
+                ajax: '/admin/positions-datatable',
                 columns: [{
                         data: 'plus-icon',
                         name: 'plus-icon'
@@ -84,7 +84,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: "/admin/permissions/" + id,
+                            url: "/admin/positions/" + id,
                             type: "DELETE",
                             success: function() {
                                 table.ajax.reload();

@@ -21,10 +21,20 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('user')->id;
         return [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email,' . $id,
             'roles' => 'required',
+            'employee_id' => 'required',
+            'phone' => 'required|min:9|max:11|unique:users,phone,' . $id,
+            'nrc' => 'required',
+            'gender' => 'required',
+            'birthday' => 'required',
+            'address' => 'required',
+            'dep_id' => 'required',
+            'position_id' => 'required',
+            'join_date' => 'required',
         ];
 
     }

@@ -8,6 +8,12 @@
     font-size: 16px;
 }
 
+:root {
+    --main-color: #00bffe;
+    --sec-color: #eb1c24;
+    --sec-text: #f2f2f2;
+}
+
 /* sweet alert */
 
 .layout-navbar {
@@ -66,4 +72,31 @@
 
 .card-head-icon div {
     font-size: 20px;
+}
+
+/* date input */
+
+.date {
+    background-color: transparent !important;
+}
+
+/* datatable */
+
+#DataTable > tbody > tr.child > td > ul {
+    width: 100%;
+}
+
+#DataTable > tbody > tr.child > td > ul li {
+    display: flex;
+    gap: 40px;
+}
+
+@media (max-width: 767px) {
+    #DataTable_length {
+        text-align: left;
+        margin-bottom: 10px;
+    }
+    #DataTable_filter {
+        text-align: left;
+    }
 }

@@ -39,14 +39,19 @@
 
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
-    <!-- Page CSS -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
     {{-- datatable  --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 
     {{-- select2  --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    {{-- flat picker  --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 </head>
 
@@ -135,9 +140,14 @@
     {{-- datatable  --}}
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 
     {{-- select 2  --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    {{-- flat picker  --}}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 
 
     @yield('scripts')
@@ -192,14 +202,14 @@
                 Toast.fire({
                     icon: 'success',
                     title: "{{ session('success') }}"
-                })
+                });
             @endif
 
             @if (session('fail'))
                 Toast.fire({
                     icon: 'error',
                     title: "{{ session('fail') }}"
-                })
+                });
             @endif
         })
     </script>

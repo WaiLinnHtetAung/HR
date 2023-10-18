@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
+use App\Models\Department;
+use App\Models\Position;
 use App\Models\User;
 use DataTables;
 use Illuminate\Support\Facades\DB;
@@ -28,10 +30,22 @@ class UserController extends Controller
 
     public function dataTable()
     {
-        $data = User::query();
+        $data = User::with('department');
 
         return Datatables::of($data)
-            ->addIndexColumn()
+            ->addColumn('plus-icon', function ($each) {
+                return null;
+            })
+            ->editColumn('profile', function ($each) {
+                $default_photo = url('logo.png');
+                return $each->profile ? "<img src='$each->profile' style='width: 130px; height: 100px; object-fit:contain;' />" : "<img src='$default_photo' style='width: 130px; height: 100px; object-fit:contain;' />";
+            })
+            ->editColumn('dep_id', function ($each) {
+                return $each->department ? $each->department->name : '-';
+            })
+            ->editColumn('is_present', function ($each) {
+                return $each->is_present ? "<span class='badge bg-success rounded-pill me-1 mb-1'>Present</span>" : "<span class='badge bg-danger rounded-pill me-1 mb-1'>Leave</span>";
+            })
             ->addColumn('role', function ($each) {
                 $roles = $each->roles->pluck('name');
                 $output = '';
@@ -60,7 +74,7 @@ class UserController extends Controller
 
                 return '<div class="action-icon">' . $show_icon . $edit_icon . $del_icon . '</div>';
             })
-            ->rawColumns(['role', 'action'])
+            ->rawColumns(['profile', 'is_present', 'role', 'action'])
             ->make(true);
 
     }
@@ -71,7 +85,9 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name', 'id');
-        return view('admin.users.create', compact('roles'));
+        $departments = Department::pluck('name', 'id');
+        $positions = Position::pluck('name', 'id');
+        return view('admin.users.create', compact('roles', 'departments', 'positions'));
     }
 
     /**
@@ -100,7 +116,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user = $user->load('roles');
+        $user = $user->load('roles', 'department', 'position');
 
         return view('admin.users.show', compact('user'));
     }
@@ -112,8 +128,10 @@ class UserController extends Controller
     {
         $roles = Role::pluck('name', 'id');
         $user = $user->load('roles');
+        $departments = Department::pluck('name', 'id');
+        $positions = Position::pluck('name', 'id');
 
-        return view('admin.users.edit', compact('roles', 'user'));
+        return view('admin.users.edit', compact('roles', 'user', 'departments', 'positions'));
     }
 
     /**

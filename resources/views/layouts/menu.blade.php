@@ -1,8 +1,8 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
         <a href="index.html" class="app-brand-link">
-            <img style="width: 35px;" src="{{ asset('logo.png') }}" alt="">
-            <span class="demo menu-text fw-bolder ms-2" style="font-size: 20px;">Admin Panel</span>
+            <img style="width: 50px;" src="{{ asset('images/menu.png') }}" alt="">
+            <span class="demo menu-text fw-bolder ms-2" style="font-size: 20px;">HR Panel</span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -51,7 +51,7 @@
                         <li
                             class="menu-item {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active open' : '' }}">
                             <a href="{{ route('admin.users.index') }}" class="menu-link">
-                                <div data-i18n="Without menu">Users</div>
+                                <div data-i18n="Without menu">{{ __('messages.employee.title') }}</div>
                             </a>
                         </li>
                     @endcan
@@ -60,72 +60,38 @@
         @endcan
 
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Pages</span>
+            <span class="menu-header-text">Office</span>
         </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Account Settings</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
-                        <div data-i18n="Account">Account</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
-                        <div data-i18n="Notifications">Notifications</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-connections.html" class="menu-link">
-                        <div data-i18n="Connections">Connections</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                <div data-i18n="Authentications">Authentications</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="auth-login-basic.html" class="menu-link" target="_blank">
-                        <div data-i18n="Basic">Login</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="auth-register-basic.html" class="menu-link" target="_blank">
-                        <div data-i18n="Basic">Register</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
-                        <div data-i18n="Basic">Forgot Password</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Misc">Misc</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="pages-misc-error.html" class="menu-link">
-                        <div data-i18n="Error">Error</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="pages-misc-under-maintenance.html" class="menu-link">
-                        <div data-i18n="Under Maintenance">Under Maintenance</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
+
+        {{-- Office  --}}
+        @can('office_management')
+            <li
+                class="menu-item {{ request()->is('admin/departments') || request()->is('admin/departments/*') || request()->is('admin/positions') || request()->is('admin/positions/*') ? 'active open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class='menu-icon tf-icons bx bxl-codepen'></i>
+                    <div data-i18n="Account Settings">Office Management</div>
+                </a>
+                <ul class="menu-sub">
+                    @can('position_access')
+                        <li
+                            class="menu-item {{ request()->is('admin/positions') || request()->is('admin/positions/*') ? 'active open' : '' }}">
+                            <a href="{{ route('admin.positions.index') }}" class="menu-link">
+                                <div data-i18n="Notifications">{{ __('messages.position.title') }}</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('department_access')
+                        <li
+                            class="menu-item {{ request()->is('admin/departments') || request()->is('admin/departments/*') ? 'active open' : '' }}">
+                            <a href="{{ route('admin.departments.index') }}" class="menu-link">
+                                <div data-i18n="Account">{{ __('messages.department.title') }}</div>
+                            </a>
+                        </li>
+                    @endcan
+
+                </ul>
+            </li>
+        @endcan
 
     </ul>
 </aside>
