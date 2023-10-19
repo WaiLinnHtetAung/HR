@@ -80,6 +80,35 @@
     background-color: transparent !important;
 }
 
+/*company setting */
+
+.company .img img {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.company .info {
+    padding: 30px;
+}
+
+.company .info input {
+    background-color: transparent;
+    border: none;
+    width: 80%;
+}
+
+.company .info input:focus {
+    outline: none;
+}
+
+.company .info i {
+    font-size: 25px;
+}
+
+.company .info .bxs-check-circle {
+    color: green;
+}
+
 /* datatable */
 
 #DataTable > tbody > tr.child > td > ul {

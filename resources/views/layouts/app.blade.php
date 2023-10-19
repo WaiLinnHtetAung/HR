@@ -151,6 +151,8 @@
     {{-- flat picker  --}}
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+    {{-- webauth for biometric  --}}
+    <script src="{{ asset('vendor/js/webauthn/webauthn.js') }}"></script>
 
 
     @yield('scripts')

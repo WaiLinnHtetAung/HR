@@ -21,6 +21,16 @@
             </a>
         </li>
 
+        {{-- Company Setting  --}}
+        @can('company_access')
+            <li class="menu-item {{ request()->is('admin/company-settings/*') ? 'active' : '' }}">
+                <a href="{{ route('admin.company-settings.show', 1) }}" class="menu-link">
+                    <i class='menu-icon tf-icons bx bxs-buildings'></i>
+                    <div data-i18n="Analytics">{{ __('messages.company_setting.title') }}</div>
+                </a>
+            </li>
+        @endcan
+
         <!-- Layouts -->
         @can('user_management_access')
             <li

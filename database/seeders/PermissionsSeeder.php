@@ -121,6 +121,18 @@ class PermissionsSeeder extends Seeder
                 'id' => 27,
                 'title' => 'position_access',
             ],
+            [
+                'id' => 28,
+                'title' => 'company_access',
+            ],
+            [
+                'id' => 29,
+                'title' => 'company_edit',
+            ],
+            [
+                'id' => 30,
+                'title' => 'company_show',
+            ],
         ];
 
         Permission::insert($permissions);
