@@ -42,7 +42,7 @@
                         }
                     })
 
-                    // $(errorElement).html("I'm sorry, but the code not correct");
+                    $(errorElement).html("I'm sorry, but the code not correct");
                 }
             });
         })

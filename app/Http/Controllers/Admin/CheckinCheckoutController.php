@@ -24,7 +24,6 @@ class CheckinCheckoutController extends Controller
                 'message' => 'Pin Code Wrong',
             ];
         }
-
         if (CheckInCheckout::whereNotNull('checkin_time')->exists()) {
             return [
                 'status' => 'fail',
