@@ -119,6 +119,7 @@ class UserController extends Controller
             $user = User::create($request->all());
 
             $user->syncRoles($request->roles);
+            $user->update(['pin_code' => sprintf("%04d", $user->id)]);
 
             DB::commit();
 

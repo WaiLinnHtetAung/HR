@@ -159,6 +159,22 @@
                             </td>
                         </tr>
                     </table>
+
+                    {{-- fingerprint for mobile --}}
+                    <div class="head d-flex justify-content-between mt-5 mobile">
+                        <div>
+                            <i class='bx bx-fingerprint' style="color: rgb(226, 45, 45);"></i>
+                            Biometric
+                        </div>
+                    </div>
+                    <hr class="mobile">
+                    <form id="biometric-register-form" class="mobile">
+                        <button type="submit" class="btn shadow p-3 border border-emerald-500 position-relative">
+                            <i class='bx bx-fingerprint fs-1 text-primary'></i>
+                            <i class='bx bx-plus fs-5 position-absolute bg-info rounded-circle text-white'
+                                style="top: 3px; right: 2px;"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="profile-img">
@@ -205,8 +221,8 @@
                         </div>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="pwChangeModal" aria-hidden="true" aria-labelledby="pwChangeModalLabel"
-                            tabindex="-1">
+                        <div class="modal fade" id="pwChangeModal" aria-hidden="true"
+                            aria-labelledby="pwChangeModalLabel" tabindex="-1">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -240,6 +256,22 @@
                             </td>
                         </tr>
                     </table>
+
+                    {{-- fingerprint --}}
+                    <div class="head d-flex justify-content-between mt-5">
+                        <div>
+                            <i class='bx bx-fingerprint' style="color: rgb(226, 45, 45);"></i>
+                            Biometric
+                        </div>
+                    </div>
+                    <hr>
+                    <form id="biometric-register-form">
+                        <button type="submit" class="btn shadow p-3 border border-emerald-500 position-relative">
+                            <i class='bx bx-fingerprint fs-1 text-primary'></i>
+                            <i class='bx bx-plus fs-5 position-absolute bg-info rounded-circle text-white'
+                                style="top: 3px; right: 2px;"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -389,6 +421,17 @@
                     })
                 }
             })
+
+            //biometric register
+            const register = event => {
+                event.preventDefault()
+
+                new WebAuthn().register()
+                    .then(response => alert('Registration successful!'))
+                    .catch(error => alert('Something went wrong, try again!'))
+            }
+
+            document.getElementById('biometric-register-form').addEventListener('submit', register)
         })
     </script>
 @endsection

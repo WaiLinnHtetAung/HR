@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('employee_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->default(bcrypt('password'));
+            $table->string('pin_code')->nullable();
             $table->date('birthday')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->text('address')->nullable();

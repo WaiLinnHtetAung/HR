@@ -21,6 +21,17 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
+     * login option
+     */
+    public function loginOption(Request $request)
+    {
+        $request->validate(['email' => 'required']);
+        $email = $request->email;
+
+        return view('auth.login-option', compact('email'));
+    }
+
+    /**
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse

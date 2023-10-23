@@ -25,6 +25,7 @@ class UsersSeeder extends Seeder
                 'birthday' => now(),
                 'position_id' => 1,
                 'dep_id' => 1,
+                'pin_code' => '0001',
                 'password' => bcrypt('password'),
                 'remember_token' => null,
                 'join_date' => now(),

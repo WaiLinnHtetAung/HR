@@ -27,6 +27,7 @@ class StoreUserRequest extends FormRequest
             'roles' => 'required',
             'employee_id' => 'required',
             'phone' => 'required|min:9|max:11|unique:users,phone',
+            'pin_code' => 'required|unique:users,pin_code',
             'nrc' => 'required',
             'gender' => 'required',
             'birthday' => 'required',

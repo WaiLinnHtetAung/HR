@@ -24,6 +24,7 @@ class User extends Authenticatable implements WebAuthnAuthenticatable
         'name',
         'email',
         'password',
+        'pin_code',
         'photo',
         'phone',
         'nrc',

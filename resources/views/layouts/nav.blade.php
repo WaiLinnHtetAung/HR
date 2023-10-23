@@ -82,9 +82,9 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <form action="{{ route('logout') }}" method="post">
+                        <form action="{{ route('logout') }}" method="post" id="logout-form">
                             @csrf
-                            <button class="dropdown-item" type="submit">
+                            <button class="dropdown-item logout-btn" type="button">
                                 <i class="bx bx-power-off me-2"></i>
                                 <span class="align-middle">Log Out</span>
                             </button>

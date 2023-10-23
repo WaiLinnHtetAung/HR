@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CheckinCheckoutController;
 use App\Http\Controllers\Admin\CompanySettingController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -23,6 +24,10 @@ use Laragear\WebAuthn\WebAuthn;
 WebAuthn::routes();
 
 Route::get('/', function () {return redirect()->route('admin.home');});
+
+//checkin checkout
+Route::get('/pin-code', [CheckinCheckoutController::class, 'index'])->name('pincode.index');
+Route::post('/check-in', [CheckinCheckoutController::class, 'checkin']);
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [ProfileController::class, 'dashboard'])->name('home');

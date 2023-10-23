@@ -28,6 +28,10 @@
     z-index: 9999;
 }
 
+.swal2-actions {
+    flex-direction: row-reverse;
+}
+
 /* select 2 */
 
 .select2.select2-container {

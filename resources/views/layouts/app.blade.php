@@ -136,6 +136,8 @@
 
     {{-- jsvalidation  --}}
     <script src="{{ asset('vendor/js/jsvalidation.js') }}"></script>
+
+    {{-- sweetalert  --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- datatable  --}}
@@ -168,6 +170,20 @@
                     }
                 })
             }
+
+            //logout
+            $(document).on('click', '.logout-btn', function() {
+                Swal.fire({
+                    title: 'Are you sure to logout ?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Logout',
+                    confirmButtonColor: '#d33',
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        $('#logout-form').submit();
+                    }
+                })
+            })
 
             //datatable mark search result
             $.extend(true, $.fn.dataTable.defaults, {
