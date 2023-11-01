@@ -14,6 +14,7 @@
 
         <form action="{{ route('admin.users.store') }}" method="post" id="user_create">
             @csrf
+
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="form-group mb-4">
@@ -36,10 +37,12 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="form-group mb-4">
                         <label for="">{{ __('messages.employee.fields.position') }}</label>
-                        <select name="position_id" id="" class="form-select">
-                            <option value="">Please Select</option>
+                        <select name="position_id" id="" class=" select2 form-control"
+                            data-placeholder="--- Please Select ---">
+                            <option></option>
                             @foreach ($positions as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
+                                <option value="{{ $key }}" {{ old('position_id') == $key ? 'selected' : '' }}>
+                                    {{ $value }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -47,10 +50,12 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="form-group mb-4">
                         <label for="">{{ __('messages.employee.fields.department') }}</label>
-                        <select name="dep_id" id="" class="form-select">
-                            <option value="">Please Select</option>
+                        <select name="dep_id" id="" class="form-control select2"
+                            data-placeholder="--- Please Select ---">
+                            <option></option>
                             @foreach ($departments as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
+                                <option value="{{ $key }}" {{ old('dep_id') == $key ? 'selected' : '' }}>
+                                    {{ $value }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -109,7 +114,9 @@
                                 style="font-size: 12px; background: rgb(27, 199, 170);">Disselect
                                 All</span>
                         </div>
-                        <select name="roles[]" id="roles" class="select2 form-control" multiple="multiple">
+                        <select name="roles[]" id="roles" class="select2 form-control" multiple="multiple"
+                            data-placeholder="--- Please Select ---">
+                            <option></option>
                             @foreach ($roles as $id => $role)
                                 <option value="{{ $role }}"
                                     {{ in_array($role, old('roles', [])) ? 'selected' : '' }}>

@@ -14,124 +14,115 @@ class PermissionsSeeder extends Seeder
     {
         $permissions = [
             [
-                'id' => 1,
                 'name' => 'user_management_access',
             ],
             [
-                'id' => 2,
-                'title' => 'permission_create',
+                'name' => 'permission_create',
             ],
             [
-                'id' => 3,
-                'title' => 'permission_edit',
+                'name' => 'permission_edit',
             ],
             [
-                'id' => 4,
-                'title' => 'permission_show',
+                'name' => 'permission_show',
             ],
             [
-                'id' => 5,
-                'title' => 'permission_delete',
+                'name' => 'permission_delete',
             ],
             [
-                'id' => 6,
-                'title' => 'permission_access',
+                'name' => 'permission_access',
             ],
             [
-                'id' => 7,
-                'title' => 'role_create',
+                'name' => 'role_create',
             ],
             [
-                'id' => 8,
-                'title' => 'role_edit',
+                'name' => 'role_edit',
             ],
             [
-                'id' => 9,
-                'title' => 'role_show',
+                'name' => 'role_show',
             ],
             [
-                'id' => 10,
-                'title' => 'role_delete',
+                'name' => 'role_delete',
             ],
             [
-                'id' => 11,
-                'title' => 'role_access',
+                'name' => 'role_access',
             ],
             [
-                'id' => 12,
-                'title' => 'user_create',
+                'name' => 'user_create',
             ],
             [
-                'id' => 13,
-                'title' => 'user_edit',
+                'name' => 'user_edit',
             ],
             [
-                'id' => 14,
-                'title' => 'user_show',
+                'name' => 'user_show',
             ],
             [
-                'id' => 15,
-                'title' => 'user_delete',
+                'name' => 'user_delete',
             ],
             [
-                'id' => 16,
-                'title' => 'user_access',
+                'name' => 'user_access',
             ],
             [
-                'id' => 17,
-                'title' => 'office_management',
+                'name' => 'office_management',
             ],
             [
-                'id' => 18,
-                'title' => 'department_create',
+                'name' => 'department_create',
             ],
             [
-                'id' => 19,
-                'title' => 'department_edit',
+                'name' => 'department_edit',
             ],
             [
-                'id' => 20,
-                'title' => 'department_show',
+                'name' => 'department_show',
             ],
             [
-                'id' => 21,
-                'title' => 'department_delete',
+                'name' => 'department_delete',
             ],
             [
-                'id' => 22,
-                'title' => 'department_access',
+                'name' => 'department_access',
             ],
             [
-                'id' => 23,
-                'title' => 'position_create',
+                'name' => 'position_create',
             ],
             [
-                'id' => 24,
-                'title' => 'position_edit',
+                'name' => 'position_edit',
             ],
             [
-                'id' => 25,
-                'title' => 'position_show',
+                'name' => 'position_show',
             ],
             [
-                'id' => 26,
-                'title' => 'position_delete',
+                'name' => 'position_delete',
             ],
             [
-                'id' => 27,
-                'title' => 'position_access',
+                'name' => 'position_access',
             ],
             [
-                'id' => 28,
-                'title' => 'company_access',
+                'name' => 'company_access',
             ],
             [
-                'id' => 29,
-                'title' => 'company_edit',
+                'name' => 'company_edit',
             ],
             [
-                'id' => 30,
-                'title' => 'company_show',
+                'name' => 'company_show',
+            ],
+            [
+                'name' => 'attendance_management_access',
+            ],
+            [
+                'name' => 'attendance_create',
+            ],
+            [
+                'name' => 'attendance_edit',
+            ],
+            [
+                'name' => 'attendance_show',
+            ],
+            [
+                'name' => 'attendance_delete',
+            ],
+            [
+                'name' => 'attendance_access',
+            ],
+            [
+                'name' => 'attendance_overview_access',
             ],
         ];
 

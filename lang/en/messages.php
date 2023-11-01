@@ -50,4 +50,19 @@ return [
         ],
     ],
 
+    'attendance' => [
+        'title' => 'Attendance',
+        'fields' => [
+            'employee' => 'Employee Name',
+            'date' => 'Date',
+            'checkin_time' => 'Checkin Time',
+            'checkout_time' => 'Checkout Time',
+            'overview' => 'Attendance Overview',
+        ],
+    ],
+
+    'attendance_scan' => [
+        'title' => 'Attendance Scan',
+    ],
+
 ];

@@ -9,7 +9,7 @@
                     <div class="d-flex flex-column justify-content-center align-items-center mb-5">
                         <h4 class="mt-2 mb-4 fw-bold text-center">QR</h4>
                         <img style="width: 200px;" src="data:image/png;base64, {!! base64_encode(
-                            QrCode::format('png')->size(100)->generate('Make me into an QrCode!'),
+                            QrCode::format('png')->size(100)->generate($hash),
                         ) !!} ">
                         <p class="text-center mt-3">Please scan QR to check in or checkout</p>
                     </div>
@@ -32,17 +32,33 @@
                 inputs: 4,
                 complete: function(value, e, errorElement) {
                     $.ajax({
-                        url: '/check-in',
+                        url: '/check-in-checkout-out',
                         type: 'post',
                         data: {
                             pin_code: value
                         },
                         success: function(res) {
-                            console.log(res.message);
+                            if (res.status == 'success') {
+                                console.log(res.message);
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: res.message
+                                });
+                            } else {
+                                Toast.fire({
+                                    icon: 'error',
+                                    title: res.message
+                                });
+                            }
+
+                            $('.pincode-input-container .pincode-input-text').val('');
+                            $('.pincode-input-container .pincode-input-text').first()
+                                .select().focus();
+
                         }
                     })
 
-                    $(errorElement).html("I'm sorry, but the code not correct");
+                    // $(errorElement).html("I'm sorry, but the code not correct");
                 }
             });
         })

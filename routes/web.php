@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AttendanceController;
+use App\Http\Controllers\Admin\AttendanceScanController;
 use App\Http\Controllers\Admin\CheckinCheckoutController;
 use App\Http\Controllers\Admin\CompanySettingController;
 use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PositionController;
 use App\Http\Controllers\Admin\RolesController;
@@ -27,7 +30,7 @@ Route::get('/', function () {return redirect()->route('admin.home');});
 
 //checkin checkout
 Route::get('/pin-code', [CheckinCheckoutController::class, 'index'])->name('pincode.index');
-Route::post('/check-in', [CheckinCheckoutController::class, 'checkin']);
+Route::post('/check-in-checkout-out', [CheckinCheckoutController::class, 'checkinCheckout']);
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [ProfileController::class, 'dashboard'])->name('home');
@@ -65,6 +68,20 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     //department
     Route::get('/departments-datatable', [DepartmentController::class, 'dataTable']);
     Route::resource('departments', DepartmentController::class);
+
+    //attendance
+    Route::get('/attendances-datatable', [AttendanceController::class, 'dataTable']);
+    Route::get('/attendances-overview', [AttendanceController::class, 'overview'])->name('attendances.overview');
+    Route::get('/attendances-overview-table', [AttendanceController::class, 'overviewTable']);
+    Route::resource('attendances', AttendanceController::class);
+
+    //attendance scan
+    Route::get('/attendance-scan', [AttendanceScanController::class, 'index'])->name('attendance.scan');
+    Route::post('/attendance-scan/store', [AttendanceScanController::class, 'store']);
+
+    //Employee attendance
+    Route::get('/employee-attendance-datatable', [EmployeeAttendanceController::class, 'dataTable']);
+    Route::get('/employee-attendance-overview', [EmployeeAttendanceController::class, 'overviewTable']);
 });
 
 require __DIR__ . '/auth.php';

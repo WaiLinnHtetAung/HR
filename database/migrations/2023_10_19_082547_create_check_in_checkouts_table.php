@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('check_in_checkouts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->date('date');
             $table->timestamp('checkin_time')->nullable();
             $table->timestamp('checkout_time')->nullable();
             $table->timestamps();

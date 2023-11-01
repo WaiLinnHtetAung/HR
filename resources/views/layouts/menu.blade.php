@@ -103,5 +103,43 @@
             </li>
         @endcan
 
+
+        @can('attendance_management_access')
+            <li
+                class=" menu-item {{ request()->is('admin/attendances') || request()->is('admin/attendances/*') || request()->is('admin/attendance-scan') || request()->is('admin/attendance-scan/*') || request()->is('admin/attendances-overview') ? 'active open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle ">
+                    <i class='menu-icon tf-icons bx bxs-calendar'></i>
+                    <div data-i18n="Account Settings">Attendance</div>
+                </a>
+                <ul class="menu-sub">
+                    @can('attendance_access')
+                        <li
+                            class="menu-item {{ request()->is('admin/attendances') || request()->is('admin/attendances/*') ? 'active open' : '' }}">
+                            <a href="{{ route('admin.attendances.index') }}" class="menu-link">
+                                <div data-i18n="Analytics">{{ __('messages.attendance.title') }}</div>
+                            </a>
+                        </li>
+                    @endcan
+                    <li class="menu-item {{ request()->is('admin/attendances-overview') ? 'active open' : '' }}">
+                        <a href="{{ route('admin.attendances.overview') }}" class="menu-link">
+                            <div data-i18n="Analytics">{{ __('messages.attendance.fields.overview') }}</div>
+                        </a>
+                    </li>
+
+                    @can('attendance_overview_access')
+                        <li
+                            class="menu-item {{ request()->is('admin/attendance-scan') || request()->is('admin/attendance-scan/*') ? 'active open' : '' }}">
+                            <a href="{{ route('admin.attendance.scan') }}" class="menu-link">
+                                <div data-i18n="Analytics">{{ __('messages.attendance_scan.title') }}</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
+
+
+
+
     </ul>
 </aside>
